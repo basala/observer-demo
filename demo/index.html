@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="../dist/img/mio.png" type="image/x-icon">
+    <title>Mio</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{time}}</h2>
+        <input v-model="time">
+        <h1>{{time}}</h1>
+        <button v-on:click="test">click here!</button>
+    </div>
+    <script src="../src/defineReactive.js"></script>
+    <script src="../src/dep.js"></script>
+    <script src="../src/observe.js"></script>
+    <script src="../src/watch.js"></script>
+    <script src="../src/mio.js"></script>
+    <script src="../src/tool.js"></script>
+    <script src="../src/compile.js"></script>
+    <script src="demo.js"></script>
+</body>
+
+</html>

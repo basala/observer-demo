@@ -4,9 +4,11 @@ function Dep() {
 
 Dep.prototype = {
     addSub: function(sub) {
-        this.subs = [sub];
+        if (sub && !this.subs.includes(sub))
+        this.subs.push(sub);
     },
     notify: function() {
+        console.log(this.subs);
         this.subs.forEach(function(sub) {
             sub.update();
         });
