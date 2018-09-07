@@ -1,27 +1,29 @@
-function Mio(options) {
-    var self = this;
-    this.options = options;
-    this.data = this.options.data;
-    Object.keys(this.data).forEach(function(key) {
-        self.proxy(key);
-    });
-    observe(this.data);
-    this.compile = new Compile(options.el || document.body, this);
-    return this;
-}
+import Watcher from './watcher'
+import {
+    observe
+} from './observer'
 
-Mio.prototype = {
-    proxy: function(key) {
-        var self = this;
-        Object.defineProperty(this, key, {
-            enumerable: false,
+export default class Vue {
+    constructor(options = {}) {
+        this.$options = options
+        let data = this._data = this.$options.data
+        Object.keys(data).forEach(key => this._proxy(key))
+        observe(data, this)
+    }
+    $watch(expOrFn, cb, options) {
+        new Watcher(this, expOrFn, cb)
+    }
+    _proxy(key) {
+        var self = this
+        Object.defineProperty(self, key, {
             configurable: true,
+            enumerable: true,
             get: function proxyGetter() {
-                return self.data[key];
+                return self._data[key]
             },
-            set: function proxySetter(newVal) {
-                self.data[key] = newVal;
+            set: function proxySetter(val) {
+                self._data[key] = val
             }
-        });
+        })
     }
 }
