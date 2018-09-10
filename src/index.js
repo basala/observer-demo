@@ -1,16 +1,23 @@
 import Mio from './mio'
 
 var mio = new Mio({
+    el: "#app",
     data: {
-        a: 1,
-        b: {
-            c: 2
+        time: new Date(),
+        text: "before"
+    },
+    methods: {
+        test() {
+            this.time = new Date()
         }
+    },
+    render() {
+        return this.__h__('div', {}, [
+            this.__h__('span', {}, [this.__toString__(this.text)])
+        ])
     }
 })
 
-mio.$watch("a", () => console.log(`a change to ${mio.a}`))
-setTimeout(function () {
-    mio.a = 10;
-}, 1000)
-console.log(mio)
+setInterval(function () {
+    mio.text = "after"
+}, 5000)

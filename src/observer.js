@@ -3,6 +3,7 @@ import Dep from './dep'
 export default class Observer {
     constructor(value) {
         this.value = value
+        // 还需考虑数组的情况，这里做了简化处理，只考虑object
         this.walk(value)
     }
     walk(value) {
@@ -21,6 +22,7 @@ export function defineReactive(obj, key, val) {
         configurable: true,
         get: () => {
             if (Dep.target) {
+                // watcher调用get时收集依赖
                 dep.addSub(Dep.target)
             }
             return val
