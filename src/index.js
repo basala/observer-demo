@@ -21,3 +21,7 @@ var mio = new Mio({
 setInterval(function () {
     mio.text = "after"
 }, 5000)
+
+setInterval(function () {
+    mio.time = new Date()
+}, 1000)
