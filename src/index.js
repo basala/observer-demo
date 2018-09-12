@@ -1,27 +1,27 @@
 import Mio from './mio'
 
 var mio = new Mio({
-    el: "#app",
-    data: {
-        time: new Date(),
-        text: "before"
-    },
-    methods: {
-        test() {
-            this.time = new Date()
-        }
-    },
-    render() {
-        return this.__h__('div', {}, [
-            this.__h__('span', {}, [this.__toString__(this.text)])
-        ])
+  el: "#app",
+  data: {
+    time: new Date(),
+    text: "before"
+  },
+  methods: {
+    test() {
+      this.time = new Date()
     }
+  },
+  render() {
+    return this.__h__('div', {}, [
+      this.__h__('span', {}, [this.__toString__(this.text)])
+    ])
+  }
 })
 
 setInterval(function () {
-    mio.text = "after"
+  mio.text = "after"
 }, 5000)
 
 setInterval(function () {
-    mio.time = new Date()
+  mio.time = new Date()
 }, 1000)
